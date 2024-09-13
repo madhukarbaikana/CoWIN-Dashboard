@@ -1,70 +1,203 @@
-# Getting Started with Create React App
+In this project, let's build a **CoWIN Dashboard** by applying the concepts we have learned till now.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Refer to the images below:
 
-## Available Scripts
+<br/>
+<div style="text-align: center;">
+    <img src="https://assets.ccbp.in/frontend/content/react-js/cowin-dashbaord-output.gif" alt="" style="max-width:70%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
+</div>
+<br/>
 
-In the project directory, you can run:
+**Failure View**
 
-### `npm start`
+<br/>
+<div style="text-align: center;">
+    <img src="https://assets.ccbp.in/frontend/content/react-js/cowin-dashbaord-failure-view-output.gif" alt="cowin-dashboard-failure-view-output" style="max-width:70%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
+</div>
+<br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Design Files
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<details>
+<summary>Click to view</summary>
 
-### `npm test`
+- [Extra Large Devices (Size >= 1200px) - Success View](https://assets.ccbp.in/frontend/content/react-js/cowin-dashboard-xl-output.png)
+- [Extra Large Devices (Size >= 1200px) - Failure View](https://assets.ccbp.in/frontend/content/react-js/cowin-dashbaord-xl-failure-view-output.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+</details>
 
-### `npm run build`
+### Set Up Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<details>
+<summary>Click to view</summary>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Download dependencies by running `npm install`
+- Start up the app using `npm start`
+</details>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Completion Instructions
 
-### `npm run eject`
+<details>
+<summary>Functionality to be added</summary>
+<br/>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The app must have the following functionalities
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- When the page is opened,
+  - An HTTP GET request should be made to **covidVaccinationDataApiUrl**
+  - **_loader_** should be displayed while the HTTP request is fetching the data
+  - After the data is fetched successfully, the response received should be displayed using different charts from `recharts`
+  - The last 7 days vaccination data should be displayed using the `BarChart` component from `recharts`
+  - The data for vaccination by gender and vaccination by age should be displayed as two different pie charts using the `PieChart` component from `recharts`
+  - If the HTTP GET request made is unsuccessful, then the [FailureView](https://assets.ccbp.in/frontend/react-js/api-failure-view.png) should be displayed
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+</details>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<details>
 
-## Learn More
+<summary>API Requests & Responses</summary>
+<br/>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**covidVaccinationDataApiUrl**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### API: `https://apis.ccbp.in/covid-vaccination-data`
 
-### Code Splitting
+#### Method: `GET`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Description:
 
-### Analyzing the Bundle Size
+Returns a response containing the list of Products
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### Success Response
 
-### Making a Progressive Web App
+```json
+{
+  "last_7_days_vaccination": [
+    {
+      "vaccine_date": "30th Jul",
+      "dose_1": 3757930,
+      "dose_2": 1817805
+    },
+    ...
+  ],
+  "vaccination_by_age": [
+    {
+      "age": "18-44",
+      "count": 482792375
+    },
+    ...
+  ],
+  "vaccination_by_gender": [
+    {
+      "count": 4809680,
+      "gender": "Male"
+    },
+    ...
+  ]
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+</details>
 
-### Advanced Configuration
+<details>
+<summary>Components Structure</summary>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<br/>
+<div style="text-align: center;">
+    <img src="https://assets.ccbp.in/frontend/content/react-js/cowin-dashbaord-component-structure-breakdown.png" alt="component-breakdown-structure" style="max-width:100%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
+</div>
+<br/>
 
-### Deployment
+</details>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<details>
+<summary>Implementation Files</summary>
+<br/>
 
-### `npm run build` fails to minify
+Use these files to complete the implementation:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `src/components/CowinDashboard/index.js`
+- `src/components/CowinDashboard/index.css`
+- `src/components/VaccinationCoverage/index.js`
+- `src/components/VaccinationCoverage/index.css`
+- `src/components/VaccinationByGender/index.js`
+- `src/components/VaccinationByGender/index.css`
+- `src/components/VaccinationByAge/index.js`
+- `src/components/VaccinationByAge/index.css`
+
+</details>
+
+### Important Note
+
+<details>
+<summary>Click to view</summary>
+
+<br/>
+
+**The following instructions are required for the tests to pass**
+
+- Wrap the Loader component with an HTML container element and add the `data-testid` attribute value as `loader` to it
+
+  ```jsx
+  <div data-testid="loader">
+    <Loader type="ThreeDots" color="#ffffff" height={80} width={80} />
+  </div>
+  ```
+
+- Provide `width` and `height` to the respective chart component to make the charts visible on the page <br> For example:
+
+  ```jsx
+  <BarChart width={1000} height={300} />
+  ```
+
+  - Provide `width` and `height` as **number**
+
+  - Achieve this CoWIN Dashboard on desktop devices. You can try different charts provided by the `recharts` package with customized data
+
+</details>
+
+### Resources
+
+<details>
+<summary>Image URLs</summary>
+
+- [https://assets.ccbp.in/frontend/react-js/api-failure-view.png](https://assets.ccbp.in/frontend/react-js/api-failure-view.png) alt should be **failure view**
+- [https://assets.ccbp.in/frontend/react-js/cowin-logo.png](https://assets.ccbp.in/frontend/react-js/cowin-logo.png) alt should be **website logo**
+
+</details>
+
+<details>
+<summary>Colors</summary>
+
+<br/>
+
+<div style="background-color: #161625; width: 150px; padding: 10px; color: white">Hex: #161625</div>
+<div style="background-color: #2cc6c6; width: 150px; padding: 10px; color: black">Hex: #2cc6c6</div>
+<div style="background-color: #cbd5e1; width: 150px; padding: 10px; color: black">Hex: #cbd5e1</div>
+<div style="background-color: #ffffff; width: 150px; padding: 10px; color: black">Hex: #ffffff</div>
+<div style="background-color: #1c1c2b; width: 150px; padding: 10px; color: white">Hex: #1c1c2b</div>
+<div style="background-color: #2d87bb; width: 150px; padding: 10px; color: black">Hex: #2d87bb</div>
+<div style="background-color: #a3df9f; width: 150px; padding: 10px; color: black">Hex: #a3df9f</div>
+<div style="background-color: #64c2a6; width: 150px; padding: 10px; color: black">Hex: #64c2a6</div>
+<div style="background-color: #94a3b8; width: 150px; padding: 10px; color: black">Hex: #94a3b8</div>
+<div style="background-color: #f54394; width: 150px; padding: 10px; color: black">Hex: #f54394</div>
+<div style="background-color: #5a8dee; width: 150px; padding: 10px; color: black">Hex: #5a8dee</div>
+<div style="background-color: #2cc6c6; width: 150px; padding: 10px; color: black">Hex: #2cc6c6</div>
+<div style="background-color: #6c757d; width: 150px; padding: 10px; color: black">Hex: #6c757d</div>
+<div style="background-color: #5a8dee; width: 150px; padding: 10px; color: black">Hex: #5a8dee</div>
+
+</details>
+
+<details>
+<summary>Font-families</summary>
+
+- Roboto
+
+</details>
+
+> ### _Things to Keep in Mind_
+>
+> - All components you implement should go in the `src/components` directory.
+> - Don't change the component folder names as those are the files being imported into the tests.
+> - **Do not remove the pre-filled code**.
+> - Want to quickly review some of the concepts you’ve been learning? Take a look at the Cheat Sheets.
